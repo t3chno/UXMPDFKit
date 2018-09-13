@@ -173,7 +173,10 @@ internal class UXMDictionary: UXMObject, Equatable {
     func pdfObjectForKey(_ key: UnsafePointer<Int8>) -> AnyObject? {
         var object: CGPDFObjectRef? = nil
         if CGPDFDictionaryGetObject(dict, key, &object) {
-            let type = CGPDFObjectGetType(object!)
+            guard let object = object else {
+                return nil
+            }
+            let type = CGPDFObjectGetType(object)
             switch type {
             case CGPDFObjectType.boolean: return booleanFromKey(key) as AnyObject?
             case CGPDFObjectType.integer: return integerFromKey(key) as AnyObject?
