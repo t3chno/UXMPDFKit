@@ -48,7 +48,7 @@ open class UXMPDFViewController: UIViewController {
     open var modalDoneButtonTouched: (() -> ())?
     
     /// The scroll direction of the reader
-    open var scrollDirection: UICollectionViewScrollDirection = .horizontal
+    open var scrollDirection: UICollectionView.ScrollDirection = .horizontal
     
     /// A reference to the document that is being displayed
     var document: UXMPDFDocument!
@@ -174,7 +174,7 @@ open class UXMPDFViewController: UIViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange(_:)), name: NSNotification.Name.UIDevice.orientationDidChangeNotification, object: nil)
         
         collectionView.collectionViewLayout.invalidateLayout()
     }
@@ -200,7 +200,7 @@ open class UXMPDFViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         coordinator.animate(alongsideTransition: { (context) in
-            self.collectionView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0)
+            self.collectionView.contentInset = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: self.bottomLayoutGuide.length, right: 0)
             self.collectionView.collectionViewLayout.invalidateLayout()
             self.pageScrubber.sizeToFit()
         }, completion: { (context) in
