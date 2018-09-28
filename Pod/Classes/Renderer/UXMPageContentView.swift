@@ -229,7 +229,7 @@ open class UXMPageContentView: UIScrollView, UIScrollViewDelegate {
     func updateBottomLayoutConstraintWithNotification(_ notification: Notification, show:Bool) {
         let userInfo = (notification as NSNotification).userInfo!
 
-        let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let keyboardEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let convertedKeyboardEndFrame = self.convert(keyboardEndFrame, from: self.window)
 
         let height: CGFloat
@@ -239,7 +239,7 @@ open class UXMPageContentView: UIScrollView, UIScrollViewDelegate {
             height = 0
         }
 
-        contentInset = UIEdgeInsetsMake(0, 0, height, 0)
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
     }
 
 
