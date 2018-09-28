@@ -174,7 +174,7 @@ open class UXMPDFViewController: UIViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange(_:)), name: NSNotification.Name.UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationDidChange(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         
         collectionView.collectionViewLayout.invalidateLayout()
     }
