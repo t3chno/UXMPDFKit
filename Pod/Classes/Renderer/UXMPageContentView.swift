@@ -72,12 +72,12 @@ open class UXMPageContentView: UIScrollView, UIScrollViewDelegate {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(UXMPageContentView.keyboardWillShowNotification(_:)),
-            name: .UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(UXMPageContentView.keyboardWillHideNotification(_:)),
-            name: .UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
 
